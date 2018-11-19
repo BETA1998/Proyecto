@@ -25,6 +25,8 @@ Route::get('create', function () {
     return view('usuarios.create');
 });
 
+
+
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });

@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <thead>
       <tr>
         <th>ID</th>
+        <th>Imagen</th>
         <th>Nombre</th>
         <th>Cedula</th>
         <th>Fecha Nac.</th>
@@ -43,6 +44,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @foreach($users as $post)
       <tr>
         <td>{{$post['id']}}</td>
+        <td>
+         
+          <img width="50px" src="{{ Storage::url($post['avatar']) }}"></td>
         <td>{{$post['nombre_comp']}}</td>
         <td>{{$post['cedula']}}</td>
         <td>{{$post['fecha_nac']}}</td>

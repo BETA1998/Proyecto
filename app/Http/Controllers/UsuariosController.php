@@ -56,8 +56,11 @@ class UsuariosController extends Controller
           'cedula' => $request->get('cedula','required', 'max:8'),
           'fecha_nac' => $request->get('fecha_nac','required'),
           'fecha_reg' => $request->get('fecha_reg','required'),
-          'correo' => $request->get('correo','required', 'max:200')
+          'correo' => $request->get('correo','required', 'max:200'),
         ]);
+        if ($request-> hasFile('avatar')) {
+            $usuario->avatar = $request-> file('avatar')-> store('public');
+        }
 
         $usuario->save();
 
@@ -107,6 +110,10 @@ class UsuariosController extends Controller
         $usuario->fecha_nac = $request->get('fecha_nac');
         $usuario->fecha_reg = $request->get('fecha_reg');
         $usuario->correo = $request->get('correo');
+
+        if ($request-> hasFile('avatar')) {
+        $usuario->avatar = $request-> file('avatar')-> store('public');
+        }
         $usuario->save();
 
         return redirect('/usuarios');

@@ -44,8 +44,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
      <form method="post" action="{{url('usuarios')}}" enctype="Multipart/form-data">
 
-
-    
      <div class="form-group row">
       {{csrf_field()}}
       <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Nombre</label>
@@ -87,6 +85,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">Correo</label>
       <div class="col-sm-5">
         <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Correo" name="correo">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      {{csrf_field()}}
+      <input name="_method" type="hidden" value="PATCH">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Imagen</label>
+      <div class="col-sm-5">
+        <input type="file" class="form-control form-control-lg" id="lgFormGroupInput" name="avatar">
       </div>
     </div>
     

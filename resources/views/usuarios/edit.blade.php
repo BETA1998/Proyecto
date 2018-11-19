@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content">
             <!-- Your Page Content Here -->
             <div class="container">
-  <form method="post" action="{{action('UsuariosController@update', $id)}}">
+  <form method="post" action="{{action('UsuariosController@update', $id)}}" enctype="Multipart/form-data">
     
     <div class="form-group row">
       {{csrf_field()}}
@@ -77,6 +77,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Correo" name="correo" value="{{$usuario->correo}}">
       </div>
     </div>
+
+     <div class="form-group row">
+      {{csrf_field()}}
+      <input name="_method" type="hidden" value="PATCH">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Imagen</label>
+      <div class="col-sm-5">
+        <input type="file" class="form-control form-control-lg" id="lgFormGroupInput" name="avatar">
+      </div>
+    </div>
+
     
     <div class="form-group row">
       <div class="col-md"></div>
