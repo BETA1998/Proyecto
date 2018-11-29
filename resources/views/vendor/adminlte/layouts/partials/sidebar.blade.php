@@ -42,6 +42,10 @@
             <li class="nav-item {{ active('usuarios') }}">
                 <a href="{{ url('usuarios') }}"><i class='fa fa-link'></i> <span>Listar</span></a>
             </li>
+
+            <li class="nav-item {{ active('estadisticas') }}">
+                <a href="{{ url('estadisticas') }}" ><i class="fa fa-link"></i> Estadisticas </a>
+            </li>
             <!--<li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

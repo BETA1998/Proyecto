@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Crud;
 
-class CRUDController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Usuarios;
+use DB;
+
+
+class ChartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +18,21 @@ class CRUDController extends Controller
      */
     public function index()
     {
-        $cruds = Crud::all()->toArray();
-
-        return view('crud.index', compact('cruds'));
+        
+        $data = DB::table('usuarios')
+       ->select(
+        DB::raw('fecha_reg as fecha_reg'),
+        DB::raw('count(*) as number'))
+       ->groupBy('fecha_reg')
+       ->get();
+     $array[] = ['Fecha reg.', 'Number'];
+     foreach($data as $key => $value)
+     {
+      $array[++$key] = [$value->fecha_reg, $value->number];
+     }
+     return view('usuarios.estadisticas')->with('fecha_reg', json_encode($array));
     }
+            
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +41,7 @@ class CRUDController extends Controller
      */
     public function create()
     {
-        return view('crud.create');
+        //
     }
 
     /**
@@ -37,14 +52,7 @@ class CRUDController extends Controller
      */
     public function store(Request $request)
     {
-        $crud = new Crud([
-          'title' => $request->get('title'),
-          'post' => $request->get('post')
-        ]);
-
-        $crud->save();
-
-        return redirect('/crud');
+        //
     }
 
     /**
@@ -66,10 +74,7 @@ class CRUDController extends Controller
      */
     public function edit($id)
     {
-        $crud = Crud::find($id);
-
-        return view('crud.edit', compact('crud','id'));
-
+        //
     }
 
     /**
@@ -81,12 +86,7 @@ class CRUDController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $crud = Crud::find($id);
-        $crud->title = $request->get('title');
-        $crud->post = $request->get('post');
-        $crud->save();
-
-        return redirect('/crud');
+        //
     }
 
     /**
@@ -97,9 +97,6 @@ class CRUDController extends Controller
      */
     public function destroy($id)
     {
-      $crud = Crud::find($id);
-      $crud->delete();
-
-      return redirect('/crud');
+        //
     }
 }

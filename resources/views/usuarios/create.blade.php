@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content">
             <!-- Your Page Content Here -->
 
-           <div class="container">
+      <div class="container">
 
       @if(! $errors->isEmpty())
       <div class="alert alert-danger">
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <div class="form-group row">
       {{csrf_field()}}
-      <input name="_method" type="hidden" value="PATCH">
+      
       <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Imagen</label>
       <div class="col-sm-5">
         <input type="file" class="form-control form-control-lg" id="lgFormGroupInput" name="avatar">

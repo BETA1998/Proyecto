@@ -26,7 +26,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
-           <div class="container">
+    <td>
+    <a href="{{ url('verpdf') }}" class="btn btn-warning">Ver En PDF</a>
+    </td>
+
+    <td>
+    <a href="{{ url('descargarpdf') }}" class="btn btn-warning">Descargar PDF</a>
+    </td>
+           
+    <div class="container">
     <table class="table table-striped">
     <thead>
       <tr>
@@ -43,17 +51,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <tbody>
       @foreach($users as $post)
       <tr>
-        <td>{{$post['id']}}</td>
+        <td>{{$post->id}}</td>
+        <td><img width="50px" src="{{ Storage::url($post->avatar) }}"></td>
+        <td>{{$post->nombre_comp}}</td>
+        <td>{{$post->cedula}}</td>
+        <td>{{$post->fecha_nac}}</td>
+        <td>{{$post->fecha_reg}}</td>
+        <td>{{$post->correo}}</td>
         <td>
-         
-          <img width="50px" src="{{ Storage::url($post['avatar']) }}"></td>
-        <td>{{$post['nombre_comp']}}</td>
-        <td>{{$post['cedula']}}</td>
-        <td>{{$post['fecha_nac']}}</td>
-        <td>{{$post['fecha_reg']}}</td>
-        <td>{{$post['correo']}}</td>
-        
-        <td><a href="{{action('UsuariosController@edit', $post['id'])}}" class="btn btn-warning">Editar</a></td>
+            <a href="{{action('UsuariosController@show', $post->id) }}" class="btn btn-warning">Ver</a>
+        </td>
+
+        <td><a href="{{action('UsuariosController@edit', $post->id)}}" class="btn btn-warning">Editar</a></td>
         <td>
 
           <!--<form action="{{action('UsuariosController@destroy', $post['id'])}}" method="post">
@@ -62,13 +71,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <button class="btn btn-danger" type="submit">Eliminar</button>
           </form>-->
 
-          <a href="" data-target="#modal-delete-{{$post['id']}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+          <a href="" data-target="#modal-delete-{{$post->id}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 
           <div class="modal fade modal-slide-in-right" aria-hidden="true"
-          role="dialog" tabindex="-1" id="modal-delete-{{$post['id']}}">
+          role="dialog" tabindex="-1" id="modal-delete-{{$post->id}}">
 
           
-        <form action="{{action('UsuariosController@destroy', $post['id'])}}" method="post">
+        <form action="{{action('UsuariosController@destroy', $post->id)}}" method="post">
             
 
          <div class="modal-dialog">
@@ -97,14 +106,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
          
           
-        </td>
+      </td>
       </tr>
       
       @endforeach
 
     </tbody>
+    
   </table>
-  
+
+  {!! $users->render() !!}
   </div>
   
 
